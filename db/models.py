@@ -37,7 +37,7 @@ class Friend(Base):
     unfollow_permission = Column(Boolean, default=False)
     follow_back = Column(Boolean, default=False)
 
-    def __init__(self, user_id, account_user_id, follow_datetime=datetime.now(), unfollow_permission=False):
+    def __init__(self, user_id, account_user_id, follow_datetime, unfollow_permission=False):
         self.user_id = user_id
         self.account_user_id = account_user_id
         self.follow_datetime = follow_datetime

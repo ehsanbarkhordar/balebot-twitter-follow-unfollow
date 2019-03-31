@@ -63,6 +63,13 @@ def select_old_friends(user_id, limit):
 
 
 @db_persist
+def select_from_friends(user_id, limit):
+    return session.query(Friend).filter(
+        Friend.account_user_id == user_id, Friend.unfollow_datetime.is_(None)) \
+        .order_by(Friend.follow_datetime).limit(limit).all()
+
+
+@db_persist
 def unfollow_friend(friend: Friend):
     friend.unfollow_datetime = datetime.datetime.now()
 
