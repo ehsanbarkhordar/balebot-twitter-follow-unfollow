@@ -6,10 +6,21 @@ try:
     api_key = LocalConfig.consumer_api_key
     api_secret = LocalConfig.consumer_api_secret
     token = LocalConfig.bot_token
+    db_user = LocalConfig.db_user
+    db_pass = LocalConfig.db_pass
+    db_host = LocalConfig.db_host
+    db_port = LocalConfig.db_port
+    db_name = LocalConfig.db_name
+
 except ImportError:
     api_key = ''
     api_secret = ''
     token = ''
+    db_user = ''
+    db_pass = ''
+    db_host = ''
+    db_port = ''
+    db_name = ''
 
 
 class BotConfig:
@@ -31,8 +42,8 @@ class BotConfig:
 
 class DatabaseConfig:
     db_string_main = 'postgresql://{}:{}@{}:{}/{}'
-    db_string = db_string_main.format(os.environ.get('POSTGRES_USER', LocalConfig.db_user),
-                                      os.environ.get('POSTGRES_PASSWORD', LocalConfig.db_pass),
-                                      os.environ.get('POSTGRES_HOST', LocalConfig.db_host),
-                                      os.environ.get('POSTGRES_PORT', LocalConfig.db_port),
-                                      os.environ.get('POSTGRES_DB', LocalConfig.db_name))
+    db_string = db_string_main.format(os.environ.get('POSTGRES_USER', db_user),
+                                      os.environ.get('POSTGRES_PASSWORD', db_pass),
+                                      os.environ.get('POSTGRES_HOST', db_host),
+                                      os.environ.get('POSTGRES_PORT', db_port),
+                                      os.environ.get('POSTGRES_DB', db_name))
